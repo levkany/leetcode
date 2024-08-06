@@ -21,3 +21,47 @@ def hasCycle(self, head: Optional[ListNode]) -> bool:
   
   return False
 ```
+
+
+#### 21. Merge Two Sorted Lists
+You are given the heads of two sorted linked lists `list1` and `list2`.
+Merge the two lists into one **sorted** list. The list should be made by splicing together the nodes of the first two lists.
+Return the head of the merged linked list.
+
+- we initialize two variables `l3` and `head`
+- the `l3` is the new linked list
+- the `head` is the first node in the `l3` list
+- we loop both lists together
+- first we check if we have both `list1` and `list2` nodes
+- if we do, we take the the node with the smaller value (this condition used for the sorting part)
+- if we dont, we check which list have a node for us, and we take it
+- of course in every condition, we increment all lists `list1`, `list2` and `l3`
+- at the end we return `head.next` since the first node is empty
+
+```python
+def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    l3 = ListNode()
+    head = l3
+    while list1 or list2:
+        if list1 and list2:
+            if list1.val < list2.val:
+                l3.next = list1
+                l3 = l3.next
+                list1 = list1.next
+            else:
+                l3.next = list2
+                l3 = l3.next
+                list2 = list2.next
+
+        elif list1:
+            l3.next = list1
+            l3 = l3.next
+            list1 = list1.next
+
+        elif list2:
+            l3.next = list2
+            l3 = l3.next
+            list2 = list2.next
+
+    return head.next
+```

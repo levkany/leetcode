@@ -153,8 +153,7 @@ Return the number of connected components in nums where two values are connected
 - we do it this way because when `count` is not 0, we had previous match in `nums`
 - at the end we simply return the `total` of consecutive matchs
 
-**Time complexity: o(n*m)**
-**Space complexity: o(1)**
+**Time & Space complexity: o(n*m), o(1)**
 
 ```python
 def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:

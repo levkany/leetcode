@@ -65,3 +65,78 @@ def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) ->
 
     return head.next
 ```
+
+
+#### 160. Intersection of Two Linked Lists (with len approach)
+Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+
+- we first initialize 4 variables, `a_len` and `b_len` which holds the length of the lists
+- and `h1` and `h2` which holds ref to `headA` and `headB`
+- we loop both `h1` and `h2` to measure the length
+- then we choose the longer list and skip `n-nodes`
+- lastly we loop both heads to find the intersecting node
+- return the intersecting node if found
+- otherise, we return None
+    
+```python
+def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+    a_len, b_len = 0, 0
+    h1, h2 = headA, headB
+
+    while h1 or h2:
+        if h1:
+            a_len += 1
+            h1 = h1.next
+        if h2:
+            h2 = h2.next
+            b_len += 1
+
+    if a_len > b_len:
+        for _ in range(a_len - b_len):
+            headA = headA.next
+    else:
+        for _ in range(b_len - a_len):
+            headB = headB.next
+
+    while headA and headB:
+        if headA == headB:
+            return headA
+        
+        headA = headA.next
+        headB = headB.next
+
+    return None
+```
+
+
+
+#### 160. Intersection of Two Linked Lists (with hashmap)
+Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+
+- we initialize `hashmap` which stores nodes we already traversed
+- we loop `headA` and `headB` together
+- each iteration we check if the node already exists in the hashmap
+- if it does, we return the node
+- otherwise, we insert the node into the `hashmap`
+- lastly, if we dont have intersection, return None
+    
+```python
+def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+    hashmap = {}
+    while headA or headB:
+        if headA:
+            if hashmap.get(headA):
+                return headA
+            else:
+                hashmap[headA] = True
+            headA = headA.next
+
+        if headB:
+            if hashmap.get(headB):
+                return headB
+            else:
+                hashmap[headB] = True
+            headB = headB.next
+
+    return None
+```

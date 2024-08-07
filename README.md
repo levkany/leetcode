@@ -109,7 +109,6 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[List
 ```
 
 
-
 #### 160. Intersection of Two Linked Lists (with hashmap)
 Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
 
@@ -139,4 +138,39 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[List
             headB = headB.next
 
     return None
+```
+
+
+#### 817. Linked List Components
+You are given the head of a linked list containing unique integer values and an integer array nums that is a subset of the linked list values.
+Return the number of connected components in nums where two values are connected if they appear consecutively in the linked list.
+
+- we initialize two variables `count` and `total`
+- we loop each node in the linked list
+- we check if the node's value exist in the `nums` list
+- if it exist, we increment the count by one
+- if it does not exist and our `count` is bigger then 0, we basicaly reset the count and increment total
+- we do it this way because when `count` is not 0, we had previous match in `nums`
+- at the end we simply return the `total` of consecutive matchs
+
+**Time complexity: o(n*m)**
+**Space complexity: o(1)**
+
+```python
+def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
+    count, total = 0, 0
+    while head:
+        if head.val in nums:
+            count += 1
+        
+        elif count > 0:
+            count = 0
+            total += 1
+            
+        head = head.next
+
+        if head == None and count > 0:
+            total += 1
+
+    return total
 ```

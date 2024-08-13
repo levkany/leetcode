@@ -22,6 +22,7 @@ def hasCycle(self, head: Optional[ListNode]) -> bool:
   return False
 ```
 
+---
 
 #### 21. Merge Two Sorted Lists
 You are given the heads of two sorted linked lists `list1` and `list2`.
@@ -66,6 +67,7 @@ def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) ->
     return head.next
 ```
 
+---
 
 #### 160. Intersection of Two Linked Lists (with len approach)
 Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
@@ -108,6 +110,7 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[List
     return None
 ```
 
+---
 
 #### 160. Intersection of Two Linked Lists (with hashmap)
 Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
@@ -140,6 +143,7 @@ def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[List
     return None
 ```
 
+---
 
 #### 817. Linked List Components
 You are given the head of a linked list containing unique integer values and an integer array nums that is a subset of the linked list values.
@@ -174,6 +178,7 @@ def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
     return total
 ```
 
+---
 
 #### 58. Length of Last Word
 Given a string `s` consisting of words and spaces, return *the length of the **last** word in the string.*

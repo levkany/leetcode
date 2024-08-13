@@ -173,3 +173,30 @@ def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
 
     return total
 ```
+
+
+#### 58. Length of Last Word
+Given a string `s` consisting of words and spaces, return *the length of the **last** word in the string.*
+A **word** is a maximal *substring* consisting of non-space characters only.
+
+- initialize two variables `i` and `l` which holds current index and length of word
+- we start to loop from the end of the string
+- we check to see if the current character is not space, and increment the `l` length of the word
+- then we check if we have length and the current char is space
+- if its the case, then we found the whole length of the last word.
+- we exit the loop and return the length
+  
+**Time & Space complexity: o(n), o(1)**
+
+```python
+def lengthOfLastWord(self, s: str) -> int:
+    i = len(s) -1
+    l = 0
+    while i >= 0:
+        if s[i] != ' ':
+            l += 1
+        elif s[i] == ' ' and l > 0:
+            break
+        i -= 1
+    return l
+```

@@ -205,3 +205,34 @@ def lengthOfLastWord(self, s: str) -> int:
         i -= 1
     return l
 ```
+
+---
+
+#### 142. Linked List Cycle II (with hashmap)
+Given the `head` of a linked list, *return the node where the cycle begins. If there is no cycle, return* `null`.
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the `next` pointer. 
+Internally, `pos` is used to denote the index of the node that tail's `next` pointer is connected to (**0-indexed**). It is `-1` if there is no cycle. **Note that** `pos` **is not passed as a parameter**.
+
+**Do not modify** the linked list.
+
+- initialize `hashmap` to store traversed nodes
+- initialize `node` which points to head to prevent traversing directly on `head`
+- loop each node
+- check if node exists in `hashmap`
+- if it does, we found the node starting cycle, `return` the node
+- otherwise, no cycle yet, continue
+- eventually, if no cycle found, return None
+  
+**Time & Space complexity: o(n), o(n)**
+
+```python
+def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    node, hashmap = head, {}
+    while node:
+        if hashmap.get(node):
+            return node
+
+        hashmap[node] = True
+        node = node.next
+    return None
+  ```

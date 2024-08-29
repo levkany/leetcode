@@ -236,3 +236,33 @@ def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         node = node.next
     return None
   ```
+
+---
+
+#### 83. Remove Duplicates from Sorted List (using dummy)
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+
+- initialize `dummy` and `prev` pointers
+- the `dummy` is just a ref to the head which we will interate over
+- the `prev` pointer as the name suggest, will hold the previous node of dummy
+- when we see that `prev`.val equals to current node, we know there is duplication, so we "skip" the node by updating the previous node to the next dummy node
+- each iteratiom (if not uplicated), we update the prev node to the current dummy node and continue.
+- at the end, we return the `head`
+-   
+**Time & Space complexity: o(n), o(1)**
+
+```python
+def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    dummy, prev = head, None
+    while dummy:
+    
+        if prev and dummy.val == prev.val:
+            prev.next = dummy.next
+    
+        else:
+            prev = dummy
+        
+        dummy = dummy.next
+    
+    return head
+  ```

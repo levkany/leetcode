@@ -287,3 +287,21 @@ def decompressRLElist(self, nums: List[int]) -> List[int]:
         i += 2
     return arr
   ```
+
+#### 1. Two Sum
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.
+
+**Time & Space complexity: o(n), o(n)**
+
+```python
+def twoSum(self, nums: List[int], target: int) -> List[int]:
+    hashmap = {}
+    for i, digit in enumerate(nums):
+        num = target - digit
+        if num in hashmap:
+            return [hashmap.get(num), i]
+            
+        hashmap[digit] = i
+  ```

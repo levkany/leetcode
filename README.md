@@ -305,3 +305,37 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
             
         hashmap[digit] = i
   ```
+
+---
+
+#### 14. Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+- initialize `i` which stores the current char we iterate over
+- initialize `prefix` which stores the actuall longest prefix
+- initialize `last_char` which holds the temporary character which we compare when iterating over the array
+- we start by iterating over all the characters in the first string,
+- each iteration, we update `last_char` and `i` so we continue checking for longest prefix.
+- if we dont have match in characters, we simply return the prefix - whether empty or with its prefix
+- we continue untill no characters left or the string len is bigger then its counterpart.
+- eventually we return the prefix.
+
+**Time & Space complexity: o(m), o(m*n)**
+
+```python
+def longestCommonPrefix(self, strs: List[str]) -> str:
+    i, prefix, last_char = 0, '', ''
+    
+    for char in strs[0]:
+        last_char = char
+
+        for _str in strs[1:]:
+            if i >= len(_str) or _str[i] != last_char:
+                return prefix
+
+        prefix += last_char
+        i += 1
+
+    return prefix
+  ```

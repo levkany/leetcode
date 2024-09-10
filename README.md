@@ -339,3 +339,28 @@ def longestCommonPrefix(self, strs: List[str]) -> str:
 
     return prefix
   ```
+
+---
+
+#### 26. Remove Duplicates from Sorted Array
+Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
+    Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
+    Return k.
+
+- we are going to be using the "skip" approach which is basically, iterating over the list with additional pointer and replacing values, aka "skipping" values we dont need
+- we initialize `k` which will be our pointer and set it to `1` since we will be iterating starting from second element in array
+- each iteration we "skip" the element at `k` index if the current and previous numbers equals.
+- by `skipping` we mean we dont increment the `k` index
+  
+**Time & Space complexity: O(n), O(1)**
+
+```python
+def removeDuplicates(self, nums: List[int]) -> int:
+    k = 1
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i-1]:
+            nums[k] = nums[i]
+            k += 1
+    return k
+  ```
